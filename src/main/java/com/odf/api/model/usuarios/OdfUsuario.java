@@ -1,6 +1,7 @@
 package com.odf.api.model.usuarios;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.odf.api.dto.usuarios.OdfUsuarioDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,8 +10,8 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity(name = "TB_USUARIO")
 public class OdfUsuario {
     @Id
@@ -37,7 +38,7 @@ public class OdfUsuario {
     @Column(nullable = false)
     private Date dataNascimento;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco_id")
     private OdfEndereco endereco;
 
@@ -52,4 +53,17 @@ public class OdfUsuario {
 
     @Column(nullable = false)
     private Boolean usuarioExterno;
+
+    public OdfUsuarioDTO converterParaDTO(){
+        OdfUsuarioDTO dto = new OdfUsuarioDTO();
+
+        dto.setNome(nome);
+        dto.setEmail(email);
+        dto.setCpf(cpf);
+        dto.setTelefone(telefone);
+        dto.setCelular(celular);
+        dto.setDataNascimento(dataNascimento);
+
+        return dto;
+    }
 }
