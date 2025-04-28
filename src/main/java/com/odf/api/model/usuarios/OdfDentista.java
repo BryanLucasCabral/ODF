@@ -1,5 +1,6 @@
 package com.odf.api.model.usuarios;
 
+import com.odf.api.dto.usuarios.OdfUsuarioGenericoDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,4 +26,22 @@ public class OdfDentista {
 
     @Column(nullable = false)
     private Boolean status;
+
+    public OdfUsuarioGenericoDTO converterParaDTO(){
+        OdfUsuarioGenericoDTO dto = new OdfUsuarioGenericoDTO();
+
+        dto.setNome(usuario.getNome());
+        dto.setEmail(usuario.getEmail());
+        dto.setCelular(usuario.getCelular());
+        dto.setCpf(usuario.getCpf());
+        dto.setTelefone(usuario.getTelefone());
+        dto.setDataNascimento(usuario.getDataNascimento());
+        dto.setSexo(usuario.getSexo());
+
+        dto.setCro(cro);
+        dto.setEspecialidade(especialidade);
+        dto.setStatus(status);
+
+        return dto;
+    }
 }

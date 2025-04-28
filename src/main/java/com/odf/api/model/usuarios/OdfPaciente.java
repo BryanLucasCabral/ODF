@@ -1,5 +1,6 @@
 package com.odf.api.model.usuarios;
 
+import com.odf.api.dto.usuarios.OdfUsuarioGenericoDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,4 +26,22 @@ public class OdfPaciente {
 
     @Column(columnDefinition = "TEXT")
     private String observacoes;
+
+    public OdfUsuarioGenericoDTO converterParaDTO(){
+        OdfUsuarioGenericoDTO dto = new OdfUsuarioGenericoDTO();
+
+        dto.setNome(usuario.getNome());
+        dto.setEmail(usuario.getEmail());
+        dto.setCelular(usuario.getCelular());
+        dto.setCpf(usuario.getCpf());
+        dto.setTelefone(usuario.getTelefone());
+        dto.setDataNascimento(usuario.getDataNascimento());
+        dto.setSexo(usuario.getSexo());
+
+        dto.setNumeroCarteirinha(numeroCarteirinha);
+        dto.setObservacoes(observacoes);
+        dto.setConvenio(convenio);
+
+        return dto;
+    }
 }
