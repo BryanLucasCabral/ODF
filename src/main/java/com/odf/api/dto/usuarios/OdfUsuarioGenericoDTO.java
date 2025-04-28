@@ -15,4 +15,10 @@ public class OdfUsuarioDTO {
     private String telefone;
     private String celular;
     private Date dataNascimento;
+    private String cro;
+    private String especialidade;
+    private Boolean status;
+    private String convenio;
+    private String numeroCarteirinha;
+    private String observacoes;
 }
